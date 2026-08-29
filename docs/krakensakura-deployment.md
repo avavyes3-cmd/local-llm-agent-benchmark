@@ -36,4 +36,4 @@ Ministral passed fresh smoke tests for both `create_new_file` and exact replacem
 
 ## Storage limitation
 
-The model directory is on the E: volume, which Windows reports as a Realtek PCIe Card Reader rather than the NVMe system disk. Warm inference is fast, but switching models requires roughly 50–90 seconds because only one model fits in 8GB VRAM and each switch reloads several gigabytes from E:.
+The model directory is on the E: volume, which Windows reports as a Realtek PCIe Card Reader rather than the NVMe system disk. Warm inference is fast. An uncached model switch took roughly 50–90 seconds because only one model fits in 8GB VRAM and each switch reloads several gigabytes from E:. A subsequent OS-cached Ministral reload completed in about six seconds. The active model is now retained for one hour of idle time to reduce unnecessary reloads.
