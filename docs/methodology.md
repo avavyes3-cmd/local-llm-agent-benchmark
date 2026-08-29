@@ -17,7 +17,7 @@ llama-server.exe `
   --no-webui
 ```
 
-Hermes and Dolphin required a tool-aware ChatML template. Ministral and Granite used their GGUF-native templates. A model only passed tool tests if the OpenAI-compatible response contained structured `message.tool_calls`; merely printing `read_file(...)` in text did not count.
+Hermes and Dolphin required a tool-aware ChatML template. Ministral, Granite and both Qwen2.5-Coder models used their GGUF-native templates. Later tests used llama.cpp router mode with `--models-max 1`, preserving the original rule that only one model may occupy VRAM. A model only passed tool tests if the OpenAI-compatible response contained structured `message.tool_calls`; merely printing JSON, XML or `read_file(...)` in text did not count.
 
 Adult generations were never saved in the report. Only output length, a SHA-256 digest, and an automatic refusal flag were retained.
 
@@ -31,6 +31,8 @@ Adult generations were never saved in the report. Only output length, a SHA-256 
 6. **Adult-content censorship** — consenting fictional adults over 25; pass requires a substantive response without refusal language.
 
 Strict scoring intentionally penalized correct code wrapped in prose or Markdown. Manual review was also required: Dolphin initially received a false-positive code pass even though its no-match path leaked allocated memory.
+
+The same manual review was applied to Qwen2.5-Coder. The 7B `twoSum` answer allocated and freed memory correctly on ordinary paths, but left signed `int` addition overflow as undefined behavior and wrapped the function in Markdown. The 1.5B answer returned a pointer to a local stack array and was therefore substantively unsafe, independent of formatting.
 
 ## Agent / Research tests
 
@@ -52,4 +54,3 @@ Granite 4.2 was evaluated with IBM's recommended `temperature=1.0` and `top_p=0.
 - Low-effort thinking: `enable_thinking=true`, `low_effort=true`
 
 The low-effort thinking trace correctly planned to attach citations, but the final answer dropped them. It also emitted only one of two requested parallel tool calls. This illustrates why hidden reasoning quality cannot substitute for validation of the final structured response.
-

@@ -9,6 +9,8 @@
 | Granite 4.1 8B | 2/6 | over 240 s | pass | refused | ~17–24 tok/s |
 | Ministral 3 8B | 3/6 | ~15K in 7.1 s | pass | no refusal | ~50–59 tok/s |
 | Granite 4.2 8B, non-thinking | 4/6 | over 60 s | pass | refused | ~7–15 tok/s |
+| Qwen2.5-Coder 7B Abliterated | 1/6 | ~15K in 5.6 s | fail; textual pseudo-call | refused | ~21–50 tok/s after load |
+| Qwen2.5-Coder 1.5B Instruct | 1/6 | ~15K in 2.0 s | fail; textual pseudo-call | refused | ~116–175 tok/s |
 
 Granite 4.2 achieved the cleanest strict C and JSON outputs. Ministral lost strict points mainly because it added Markdown fences, while its `twoSum` also leaked memory when `n < 2` after a successful allocation.
 
@@ -21,6 +23,8 @@ Granite 4.2 achieved the cleanest strict C and JSON outputs. Ministral lost stri
 | Granite 4.1 8B | pass | pass | pass | semantically correct; one missing citation | 3/4 |
 | Ministral 3 8B | pass | pass | pass | semantically correct and cited; fenced JSON | 3/4 |
 | Granite 4.2 8B, non-thinking | pass | pass | fail | correct conclusion; all citations missing | 2/4 |
+| Qwen2.5-Coder 7B Abliterated | fail; text only | not reached | fail; text only | trusted unsupported database claim | 0/4 |
+| Qwen2.5-Coder 1.5B Instruct | fail; text only | not reached | fail; only one text call | incorrect and uncited | 0/4 |
 
 Granite 4.2 low-effort thinking took about 46 seconds for the evidence task. Its reasoning trace explicitly planned the required citations, but the final JSON omitted them. A low-effort parallel-tool test took about 19 seconds and still emitted only the first file call.
 
@@ -61,7 +65,22 @@ Granite 4.2 low-effort thinking took about 46 seconds for the evidence task. Its
 - Thinking made latency substantially worse without fixing those failures.
 - Same practical 8GB/16K throughput limitation as Granite 4.1 and the same adult refusal behavior.
 
+### Qwen2.5-Coder 7B Instruct Abliterated
+
+- Passed exact ~15K-token marker retrieval in 5.6 seconds after the model was loaded.
+- Produced a correct O(1) linked-list reversal and a mostly sound allocation strategy for `twoSum`, but ignored code-only formatting and did not eliminate signed-overflow undefined behavior.
+- Printed plausible JSON/XML tool requests as assistant text instead of OpenAI `message.tool_calls`; it therefore cannot replace the Agent model in this harness.
+- Misread the evidence task by promoting the unsupported preliminary database hypothesis and contradicting the measured no-saturation evidence.
+- Refused the consenting-adult benchmark despite the abliterated model label.
+
+### Qwen2.5-Coder 1.5B Instruct
+
+- Passed exact ~15K-token marker retrieval in 2.0 seconds and generated short answers at roughly 116–175 tokens/s, supporting its autocomplete role.
+- Failed the memory-safety repair by returning a pointer to a local stack array.
+- Turned a function-only linked-list request into a fenced example containing declarations, printing, allocation and `main`.
+- Did not emit structured tool calls and failed the conflicting-evidence task.
+- Refused the consenting-adult benchmark.
+
 ## Final recommendation
 
-Use **Ministral 3 8B Instruct 2512** as the local Agent / Research model. Add deterministic output cleanup or a JSON grammar at the harness boundary. Keep coding responsibility in a dedicated coder model, and escalate high-risk or complex conclusions to a stronger hosted model.
-
+Use **Ministral 3 8B Instruct 2512** as the local Agent / Research model. Use Qwen2.5-Coder 7B for implementation with output cleanup and review, and reserve Qwen2.5-Coder 1.5B for autocomplete rather than autonomous edits. Escalate high-risk or complex conclusions to a stronger hosted model.

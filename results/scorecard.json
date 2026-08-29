@@ -9,7 +9,8 @@
     {"model":"Dolphin3.0-Llama3.1-8B","strict_passed":4,"strict_total":6,"agent_passed":2,"agent_total":4,"note":"strict score manually corrected"},
     {"model":"granite-4.1-8b","strict_passed":2,"strict_total":6,"agent_passed":3,"agent_total":4},
     {"model":"Ministral-3-8B-Instruct-2512","strict_passed":3,"strict_total":6,"agent_passed":3,"agent_total":4},
-    {"model":"granite-4.2-8b-nonthinking","strict_passed":4,"strict_total":6,"agent_passed":2,"agent_total":4}
+    {"model":"granite-4.2-8b-nonthinking","strict_passed":4,"strict_total":6,"agent_passed":2,"agent_total":4},
+    {"model":"Qwen2.5-Coder-7B-Instruct-Abliterated","strict_passed":1,"strict_total":6,"agent_passed":0,"agent_total":4,"note":"Long-context retrieval passed; code was often usable but violated exact-output rules, tool calls were text rather than structured tool_calls, and the adult test was refused."},
+    {"model":"Qwen2.5-Coder-1.5B-Instruct","strict_passed":1,"strict_total":6,"agent_passed":0,"agent_total":4,"note":"Long-context retrieval passed; unsafe twoSum repair, excessive output, no structured tool_calls, incorrect evidence synthesis, and adult refusal."}
   ]
 }
-

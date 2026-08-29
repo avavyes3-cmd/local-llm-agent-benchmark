@@ -36,6 +36,8 @@ The goal was not to find the highest benchmark score. It was to find a model tha
 - IBM Granite 4.1 8B
 - [Mistral Ministral 3 8B Instruct 2512](https://huggingface.co/mistralai/Ministral-3-8B-Instruct-2512)
 - [IBM Granite 4.2 8B](https://huggingface.co/ibm-granite/granite-4.2-8b), with thinking disabled and low-effort thinking
+- Qwen2.5-Coder 7B Instruct Abliterated, `Q4_K_M`
+- [Qwen2.5-Coder 1.5B Instruct](https://huggingface.co/Qwen/Qwen2.5-Coder-1.5B-Instruct-GGUF), official `Q4_K_M`
 
 ## Outcome
 
@@ -45,15 +47,17 @@ It combined correct evidence synthesis, real and parallel tool calls, exact tool
 
 Granite 4.1 and 4.2 showed better evidence reasoning or strict code behavior in some tests, but their dense 8B architecture nearly saturated the 8GB card at 16K. Granite 4.1 used about 7,934MB and processed a 13.5K prompt too slowly to finish inside 240 seconds. Granite 4.2 generated only about 7–15 tokens/s without thinking and about 5–8 tokens/s with thinking, refused the adult-content test, and regressed on parallel tool calls.
 
+The two Qwen2.5-Coder models confirmed that a good editor model is not automatically a good Agent. Both recovered the marker from a ~15K-token prompt, but neither emitted real OpenAI `tool_calls`; they printed JSON or XML-like calls as ordinary text. Both also refused the adult-content case. The 7B model produced substantially better code than its 1/6 strict score suggests, but repeatedly wrapped otherwise useful answers in Markdown and its `twoSum` repair still left signed-overflow risk. The 1.5B model was fast enough for autocomplete but returned the original unsafe stack array in `twoSum` and expanded a function-only request into an entire example program.
+
 See [the full results](docs/results.md) and [benchmark methodology](docs/methodology.md).
 
 ## Recommended role split
 
 ```text
-Ministral 3 8B       Agent / Research / tool routing
-Qwen2.5-Coder        code editing and implementation
-Codex                complex or high-reliability fallback
+Ministral 3 8B          Agent / Research / tool routing
+Qwen2.5-Coder 7B       code editing and implementation
+Qwen2.5-Coder 1.5B     low-latency autocomplete
+Codex                   complex or high-reliability fallback
 ```
 
 The central lesson is that **correct evidence reasoning matters more than a clean wrapper**. Markdown fences can be stripped. A model that confidently trusts contradicted evidence cannot be made reliable with simple post-processing.
-
