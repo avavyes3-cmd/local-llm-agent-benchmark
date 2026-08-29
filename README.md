@@ -56,6 +56,8 @@ For the practical VS Code/Continue workflow, see [Continue usage](docs/continue-
 
 KrakenSakura deployment measurements are documented in [KrakenSakura deployment](docs/krakensakura-deployment.md).
 
+Role-specific stress limits for Ministral, Qwen7B and KrakenSakura are documented in [the three-model extreme benchmark](docs/extreme-role-benchmark.md).
+
 ## Recommended role split
 
 ```text

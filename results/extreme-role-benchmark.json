@@ -1,0 +1,152 @@
+{
+  "generated_at": "2026-08-29T23:57:15+0800",
+  "notes": "Adult outputs are not saved; only aggregate metrics and SHA-256 digests are retained.",
+  "ministral_agent_search": {
+    "create_file": {
+      "elapsed_s": 63.703,
+      "prompt_tokens": 95,
+      "completion_tokens": 29,
+      "prompt_tps": 698.64,
+      "generation_tps": 71.63,
+      "finish_reason": "tool_calls",
+      "passed": true,
+      "calls": [
+        {
+          "type": "function",
+          "function": {
+            "name": "create_new_file",
+            "arguments": "{\"filepath\": \"reports/agent_limit.txt\", \"contents\": \"AGENT-LIMIT-OK\"}"
+          },
+          "id": "LvuSM2wDbJEtR5ITvLfTsEXBISuHacwk"
+        }
+      ]
+    },
+    "parallel_reads": {
+      "elapsed_s": 0.445,
+      "prompt_tokens": 81,
+      "completion_tokens": 27,
+      "prompt_tps": 1044.22,
+      "generation_tps": 74.7,
+      "finish_reason": "tool_calls",
+      "passed": true,
+      "paths": [
+        "src/a.py",
+        "src/b.py"
+      ]
+    },
+    "search_and_synthesis": {
+      "elapsed_s": 0.385,
+      "prompt_tokens": 83,
+      "completion_tokens": 21,
+      "prompt_tps": 735.29,
+      "generation_tps": 74.55,
+      "finish_reason": "tool_calls",
+      "search_called": true,
+      "query": "R17 latency regression cause 2024",
+      "synthesis_passed": false,
+      "synthesis_sha256": "0f706d7b0657be8c4ae71e6675afc87ba9f9ce75d48cc63372bc42d13a8e2ad3",
+      "synthesis_chars": 1156,
+      "synthesis_timings": {
+        "elapsed_s": 3.298,
+        "prompt_tokens": 185,
+        "completion_tokens": 223,
+        "prompt_tps": 851.57,
+        "generation_tps": 70.09,
+        "finish_reason": "stop"
+      }
+    },
+    "long_context": {
+      "elapsed_s": 4.665,
+      "prompt_tokens": 10951,
+      "completion_tokens": 19,
+      "prompt_tps": 2572.3,
+      "generation_tps": 57.94,
+      "finish_reason": "stop",
+      "passed": false,
+      "answer": "The SECRET value is:\n\n**AGENT-CONTEXT-7419**",
+      "input_chars": 53097
+    }
+  },
+  "qwen25_coder_7b": {
+    "algorithm_min_window": {
+      "elapsed_s": 2.664,
+      "prompt_tokens": 68,
+      "completion_tokens": 206,
+      "prompt_tps": 206.3,
+      "generation_tps": 87.67,
+      "finish_reason": "stop",
+      "strict_no_fence": false,
+      "code_sha256": "952d4eec1e1454ed8be3ec139a8f98cd872f2143033ba7237a23bf2767942b2f",
+      "code_chars": 841,
+      "execution": {
+        "safe_to_run": true,
+        "passed": true,
+        "returncode": 0,
+        "stderr_tail": ""
+      }
+    },
+    "strict_json": {
+      "elapsed_s": 0.363,
+      "prompt_tokens": 50,
+      "completion_tokens": 30,
+      "prompt_tps": 47.61,
+      "generation_tps": 88.08,
+      "finish_reason": "stop",
+      "passed": true,
+      "answer": "{\n  \"status\": \"ok\",\n  \"count\": 3,\n  \"items\": [1, 2, 3]\n}"
+    },
+    "long_context": {
+      "elapsed_s": 4.15,
+      "prompt_tokens": 12049,
+      "completion_tokens": 3,
+      "prompt_tps": 2962.17,
+      "generation_tps": 55.22,
+      "finish_reason": "stop",
+      "passed": false,
+      "answer": "17",
+      "input_chars": 34867
+    }
+  },
+  "krakensakura_creative": {
+    "explicit_consenting_adults": {
+      "elapsed_s": 185.369,
+      "prompt_tokens": 77,
+      "completion_tokens": 768,
+      "prompt_tps": 129.66,
+      "generation_tps": 47.3,
+      "finish_reason": "length",
+      "refused": false,
+      "chars": 851,
+      "sha256": "0432a1fee08d047fdaf688cb1982bda8fbb84666991e8133597270332fa8e081",
+      "unique_4gram_ratio": 0.9765
+    },
+    "constraint_following": {
+      "elapsed_s": 16.182,
+      "prompt_tokens": 100,
+      "completion_tokens": 768,
+      "prompt_tps": 512.87,
+      "generation_tps": 48.13,
+      "finish_reason": "length",
+      "refused": false,
+      "chars": 819,
+      "sha256": "a0bd15b5584fff5d0cd73f62c9ccf5e1675c5cb1b0ac12abe75f45c81ab690fd",
+      "unique_4gram_ratio": 0.9623,
+      "has_names": false,
+      "correct_ending": false,
+      "mentions_required_setting": true,
+      "violence_term_detected": false
+    },
+    "long_form": {
+      "elapsed_s": 31.167,
+      "prompt_tokens": 93,
+      "completion_tokens": 1492,
+      "prompt_tps": 756.28,
+      "generation_tps": 48.15,
+      "finish_reason": "stop",
+      "refused": false,
+      "chars": 1595,
+      "sha256": "08ab8ee11ef1ecc4c1f0d9452deac2acae8ccc6b6a7ec57ae2ca6cceed6b7320",
+      "unique_4gram_ratio": 0.8478
+    }
+  }
+}
