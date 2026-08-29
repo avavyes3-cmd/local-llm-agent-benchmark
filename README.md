@@ -51,6 +51,8 @@ The two Qwen2.5-Coder models confirmed that a good editor model is not automatic
 
 See [the full results](docs/results.md) and [benchmark methodology](docs/methodology.md).
 
+For the practical VS Code/Continue workflow, see [Continue usage](docs/continue-usage.md).
+
 ## Recommended role split
 
 ```text
