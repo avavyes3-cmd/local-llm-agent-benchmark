@@ -1,0 +1,7 @@
+*.gguf
+*.aria2
+*.log
+*.pid
+.idea/
+.vscode/
+

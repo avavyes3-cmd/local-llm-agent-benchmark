@@ -1,0 +1,15 @@
+{
+  "hardware": "NVIDIA RTX 3070 Ti 8GB",
+  "runtime": "llama.cpp b10666 CUDA 12.4",
+  "context_tokens": 16384,
+  "quantization": "Q4_K_M",
+  "recommended_model": "Ministral-3-8B-Instruct-2512",
+  "models": [
+    {"model":"Hermes-3-Llama-3.1-8B","strict_passed":4,"strict_total":6,"agent_passed":2,"agent_total":4},
+    {"model":"Dolphin3.0-Llama3.1-8B","strict_passed":4,"strict_total":6,"agent_passed":2,"agent_total":4,"note":"strict score manually corrected"},
+    {"model":"granite-4.1-8b","strict_passed":2,"strict_total":6,"agent_passed":3,"agent_total":4},
+    {"model":"Ministral-3-8B-Instruct-2512","strict_passed":3,"strict_total":6,"agent_passed":3,"agent_total":4},
+    {"model":"granite-4.2-8b-nonthinking","strict_passed":4,"strict_total":6,"agent_passed":2,"agent_total":4}
+  ]
+}
+
