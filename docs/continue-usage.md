@@ -6,7 +6,6 @@
 |---|---|---|
 | Agent / Chat | Ministral 3 8B - Agent | 读取文件、调用工具、执行多步修改、分析编译错误 |
 | Edit / Apply | Qwen2.5-Coder 7B - Edit / Code Draft | 生成代码修改建议；在编辑卡片中点击 **Apply** 写回文件 |
-| Autocomplete | Qwen2.5-Coder 1.5B - Autocomplete | 光标处实时补全 |
 
 ## Agent 和 Edit/Apply 的区别
 
@@ -38,4 +37,3 @@ C_CPP/C++/链表反转.c
 - 只输出代码不修改：检查是否处于 Chat/Edit 而不是 Agent；Edit 模式需要点击 Apply。
 - 工具报告路径不存在：使用 workspace 相对路径，并重新打开项目根目录。
 - 模型响应很慢：8GB 显存上只保持一个模型加载；首次切换模型会有加载时间。
-

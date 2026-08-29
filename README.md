@@ -58,7 +58,6 @@ For the practical VS Code/Continue workflow, see [Continue usage](docs/continue-
 ```text
 Ministral 3 8B          Agent / Research / tool routing
 Qwen2.5-Coder 7B       code editing and implementation
-Qwen2.5-Coder 1.5B     low-latency autocomplete
 Codex                   complex or high-reliability fallback
 ```
 
