@@ -38,6 +38,7 @@ The goal was not to find the highest benchmark score. It was to find a model tha
 - [IBM Granite 4.2 8B](https://huggingface.co/ibm-granite/granite-4.2-8b), with thinking disabled and low-effort thinking
 - Qwen2.5-Coder 7B Instruct Abliterated, `Q4_K_M`
 - [Qwen2.5-Coder 1.5B Instruct](https://huggingface.co/Qwen/Qwen2.5-Coder-1.5B-Instruct-GGUF), official `Q4_K_M`
+- [KrakenSakura Maelstrom 12B v1](https://huggingface.co/Naphula/KrakenSakura-Maelstrom-12B-v1-GGUF), `Q3_K_M`
 
 ## Outcome
 
@@ -53,11 +54,14 @@ See [the full results](docs/results.md) and [benchmark methodology](docs/methodo
 
 For the practical VS Code/Continue workflow, see [Continue usage](docs/continue-usage.md).
 
+KrakenSakura deployment measurements are documented in [KrakenSakura deployment](docs/krakensakura-deployment.md).
+
 ## Recommended role split
 
 ```text
 Ministral 3 8B          Agent / Research / tool routing
 Qwen2.5-Coder 7B       code editing and implementation
+KrakenSakura 12B       low-refusal creative chat (no tools)
 Codex                   complex or high-reliability fallback
 ```
 

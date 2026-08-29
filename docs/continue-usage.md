@@ -4,6 +4,7 @@
 
 | Continue 角色 | 模型 | 用途 |
 |---|---|---|
+| Creative Chat | KrakenSakura 12B - Creative Chat (No Tools) | 低审查创作；不具备真实文件工具能力 |
 | Agent / Chat | Ministral 3 8B - Agent | 读取文件、调用工具、执行多步修改、分析编译错误 |
 | Edit / Apply | Qwen2.5-Coder 7B - Edit / Code Draft | 生成代码修改建议；在编辑卡片中点击 **Apply** 写回文件 |
 
