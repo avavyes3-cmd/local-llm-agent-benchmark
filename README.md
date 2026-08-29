@@ -39,6 +39,7 @@ The goal was not to find the highest benchmark score. It was to find a model tha
 - Qwen2.5-Coder 7B Instruct Abliterated, `Q4_K_M`
 - [Qwen2.5-Coder 1.5B Instruct](https://huggingface.co/Qwen/Qwen2.5-Coder-1.5B-Instruct-GGUF), official `Q4_K_M`
 - [KrakenSakura Maelstrom 12B v1](https://huggingface.co/Naphula/KrakenSakura-Maelstrom-12B-v1-GGUF), `Q3_K_M`
+- [Ornith 1.5 9B](https://huggingface.co/ornith-ai/Ornith-1.5-9B-GGUF), `Q4_K_M`
 
 ## Outcome
 
@@ -57,6 +58,8 @@ For the practical VS Code/Continue workflow, see [Continue usage](docs/continue-
 KrakenSakura deployment measurements are documented in [KrakenSakura deployment](docs/krakensakura-deployment.md).
 
 Role-specific stress limits for Ministral, Qwen7B and KrakenSakura are documented in [the three-model extreme benchmark](docs/extreme-role-benchmark.md).
+
+The deployment and local comparison of Ornith 1.5 9B is documented in [the Ornith evaluation](docs/ornith-1.5-9b-evaluation.md).
 
 ## Recommended role split
 
