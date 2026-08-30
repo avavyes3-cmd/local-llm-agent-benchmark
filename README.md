@@ -43,9 +43,11 @@ The goal was not to find the highest benchmark score. It was to find a model tha
 
 ## Outcome
 
-**Ministral 3 8B Instruct 2512 was the best overall fit.**
+**Ornith 1.5 9B is the final primary Agent / Research / Code model.**
 
-It combined correct evidence synthesis, real and parallel tool calls, exact tool-result continuation, a successful ~15K retrieval test, unrestricted adult-content behavior, and roughly 50–59 generated tokens/s. Its main weakness was adding Markdown fences around otherwise valid structured output; that is much easier to repair in a harness than incorrect reasoning.
+Ornith matched real and parallel tool calls, produced cleaner long-context retrieval, completed multi-round search with source-aware synthesis, and repaired a failed code edge case through an exact edit tool. Warm generation measured roughly 52–65 tokens/s. Its main limitations are an approximately 80-second uncached load from E: and refusal of the adult-content test.
+
+Ministral 3 8B was the strongest model in the original comparison and remains an important historical result. Ornith subsequently replaced it in the deployed stack because it combines the Agent, search and code roles more cleanly. Qwen2.5-Coder 7B was also removed from the final deployment because it did not emit real OpenAI tool calls and no longer justified a separate loaded model.
 
 Granite 4.1 and 4.2 showed better evidence reasoning or strict code behavior in some tests, but their dense 8B architecture nearly saturated the 8GB card at 16K. Granite 4.1 used about 7,934MB and processed a 13.5K prompt too slowly to finish inside 240 seconds. Granite 4.2 generated only about 7–15 tokens/s without thinking and about 5–8 tokens/s with thinking, refused the adult-content test, and regressed on parallel tool calls.
 
@@ -64,8 +66,7 @@ The deployment and local comparison of Ornith 1.5 9B is documented in [the Ornit
 ## Recommended role split
 
 ```text
-Ministral 3 8B          Agent / Research / tool routing
-Qwen2.5-Coder 7B       code editing and implementation
+Ornith 1.5 9B          Agent / Research / direct edits / code
 KrakenSakura 12B       low-refusal creative chat (no tools)
 Codex                   complex or high-reliability fallback
 ```

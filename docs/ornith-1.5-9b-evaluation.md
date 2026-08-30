@@ -37,22 +37,20 @@ Ornith matched real and parallel tool calls, produced cleaner exact-format long-
 
 ### Versus Qwen2.5-Coder 7B
 
-Ornith was much stronger at noisy long-context target retrieval and emitted real tool calls. Its first coding answer still missed an empty-input edge case, so the evidence does not justify deleting Qwen yet. Ornith did correctly diagnose and repair the failure using an exact edit tool.
+Ornith was much stronger at noisy long-context target retrieval and emitted real tool calls. Its first coding answer still missed an empty-input edge case, but it correctly diagnosed and repaired the failure using an exact edit tool. After reviewing the combined Agent, search and coding results, the final deployment removed Qwen to avoid maintaining a separate weaker editor path.
 
 ### Versus KrakenSakura 12B
 
 Ornith is substantially better for Agent, search, tools and code, but refused the adult-fiction test. Kraken remains the creative/adult model.
 
-## Provisional recommendation
+## Final deployment decision
 
-Use Ornith as the primary **Agent + Search + Code** model in Continue. Keep Ministral and Qwen temporarily as fallbacks until Ornith has survived several real VS Code tasks. Keep Kraken for low-refusal creative writing.
+Use Ornith as the primary **Agent + Search + Code** model in Continue. Ministral and Qwen were removed from the active configuration and their local GGUF files were deleted. Keep Kraken for low-refusal creative writing.
 
 The target simplified configuration is:
 
 ```text
 Ornith 1.5 9B      primary Agent / search / direct edits / code
 KrakenSakura 12B   adult creative writing
-Ministral + Qwen   temporary fallback during field testing
 Codex              complex/high-reliability fallback
 ```
-
