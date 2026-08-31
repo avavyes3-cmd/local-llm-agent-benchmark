@@ -65,9 +65,10 @@ The deployment and local comparison of Ornith 1.5 9B is documented in [the Ornit
 
 ## Recommended role split
 
+The local GGUF deployment was subsequently removed after field testing because neither remaining model met the required quality bar. The benchmark artifacts below are retained as historical results; no local model is currently configured or loaded.
+
 ```text
-Ornith 1.5 9B          Agent / Research / direct edits / code
-KrakenSakura 12B       low-refusal creative chat (no tools)
+No local model          use a separately selected/hosted model
 Codex                   complex or high-reliability fallback
 ```
 

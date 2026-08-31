@@ -2,6 +2,8 @@
 
 ## 模型分工
 
+当前本地 GGUF 已全部移除，Continue 不再配置本地模型。下面的历史模型名称仅用于说明此前的测试结果；重新部署模型前不要启动桌面本地服务脚本。
+
 | Continue 角色 | 模型 | 用途 |
 |---|---|---|
 | Creative Chat | KrakenSakura 12B - Creative Chat (No Tools) | 低审查创作；不具备真实文件工具能力 |
